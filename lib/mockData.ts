@@ -19,26 +19,40 @@ export const DHAMMA_DATA: Master[] = [
   {
     id: 'oxford-sayadaw',
     name: 'ပါမောက္ခချုပ်ဆရာတော်ကြီး',
-    title: 'ဒေါက်တာနန္ဒမာလာဘိဝံသ',
-    // Wikimedia သို့မဟုတ် direct image url သုံးပါ
+    title: 'အဂ္ဂမဟာပဏ္ဍိတ ဒေါက်တာနန္ဒမာလာဘိဝံသ',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Nandamala_Bhivamsa.jpg/330px-Nandamala_Bhivamsa.jpg',
     tracks: [
       {
         id: 'ox-01',
-        title: 'ဒေါသကို ဉာဏ်နဲ့ ထိန်းချုပ်နည်း',
+        title: 'ဒေါသကို ဉာဏ်ဖြင့် အနိုင်ယူခြင်း တရားတော်',
         category: 'life',
-        duration: '၂၅:၄၀',
-        // public folder ထဲ ထည့်ထားသော ဖိုင် သို့မဟုတ် CORS ခွင့်ပြုထားသော အသံဖိုင်
-        audioUrl: 'https://actions.google.com/sounds/v1/ambiences/rain_heavy.ogg', // CORS free sample
-        description: 'စိတ်တိုဒေါသထွက်လွယ်သော လူငယ်များအတွက် သတိပစ္စုပ္ပန်တည့်တည့် ထားနည်း အနှစ်ချုပ်'
+        duration: '၂၄:၁၂',
+        audioUrl: 'https://ia800407.us.archive.org/21/items/pa-auk-tawya-sayadaw-dhamma-talks/2012-01-20_Dhammacakkappavattana_Sutta_01.mp3',
+        description: 'စိတ်တိုဒေါသထွက်လွယ်သော လူငယ်များ လက်တွေ့ စိတ်ကို ထိန်းကျောင်းနည်း အနှစ်ချုပ်'
       },
       {
         id: 'ox-02',
         title: 'ဘုရားဆွမ်းနှင့် ပန်းများ စွန့်စားခြင်းဆိုင်ရာ ဝိနည်းဒွိဟရှင်းတမ်း',
         category: 'vinaya',
-        duration: '၁၈:၁၅',
-        audioUrl: 'https://actions.google.com/sounds/v1/ambiences/rain_heavy.ogg',
+        duration: '၁၈:၄၅',
+        audioUrl: 'https://ia800407.us.archive.org/21/items/pa-auk-tawya-sayadaw-dhamma-talks/2012-01-21_Dhammacakkappavattana_Sutta_02.mp3',
         description: 'လူအများ နေ့စဉ် ဒွိဟဖြစ်နေရသော ပူဇော်ပြီး ဆွမ်း၊ သစ်သီးများ စွန့်စားသည့် ဝိနည်းအဆုံးအဖြတ်'
+      }
+    ]
+  },
+  {
+    id: 'paauk-sayadaw',
+    name: 'ဖားအောက်တောရ ဆရာတော်ကြီး',
+    title: 'ဘဒ္ဒန္တ အာစိဏ္ဏ (မဟာကမ္မဋ္ဌာနာစရိယ)',
+    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Pa-Auk_Sayadaw.jpg/330px-Pa-Auk_Sayadaw.jpg',
+    tracks: [
+      {
+        id: 'pa-01',
+        title: 'သတိပဋ္ဌာန်နှင့် အနတ္တ လက္ခဏာ သဘောတရား',
+        category: 'deep_dhamma',
+        duration: '၄၅:၁၀',
+        audioUrl: 'https://ia800407.us.archive.org/21/items/pa-auk-tawya-sayadaw-dhamma-talks/2012-01-22_Dhammacakkappavattana_Sutta_03.mp3',
+        description: 'စိတ်ဖိစီးမှုနှင့် အတွေးလွန်ခြင်း (Overthinking) ကို သတိပဋ္ဌာန်ဖြင့် ချုပ်ငြိမ်းစေနည်း'
       }
     ]
   },
@@ -50,11 +64,11 @@ export const DHAMMA_DATA: Master[] = [
     tracks: [
       {
         id: 'stg-01',
-        title: 'Overthinking နှင့် စိုးရိမ်သောက ကင်းဝေးရေး',
+        title: 'လောကဓံကို ရင်ဆိုင်ကျော်လွှားနည်း ဩဝါဒ',
         category: 'life',
-        duration: '၃၂:၁၀',
-        audioUrl: 'https://actions.google.com/sounds/v1/ambiences/rain_heavy.ogg',
-        description: 'မဖြစ်သေးသော အနာဂတ်အတွက် ပူလောင်မနေဘဲ သတ္တိရှိရှိ လက်ရှိကို ရင်ဆိုင်နည်း'
+        duration: '၃၁:၂၀',
+        audioUrl: 'https://ia800407.us.archive.org/21/items/pa-auk-tawya-sayadaw-dhamma-talks/2012-01-23_Dhammacakkappavattana_Sutta_04.mp3',
+        description: 'မဖြစ်သေးသော အနာဂတ်အတွက် စိုးရိမ်သောက ကင်းဝေးပြီး သတ္တိရှိရှိ နေထိုင်နည်း'
       }
     ]
   }
