@@ -5,14 +5,23 @@ export async function trimAudio(
 ): Promise<Blob> {
   const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
   const audioContext = new AudioCtx();
-  const response = await fetch(audioUrl);
+
+  // Audio Context suspended ဖြစ်နေပါက resume လုပ်ပေးရန်
+  if (audioContext.state === 'suspended') {
+    await audioContext.resume();
+  }
+
+  const response = await fetch(audioUrl, { mode: 'cors' });
+  if (!response.ok) {
+    throw new Error(`Audio fetch failed: ${response.statusText}`);
+  }
   const arrayBuffer = await response.arrayBuffer();
   const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 
   const sampleRate = audioBuffer.sampleRate;
-  const startOffset = Math.floor(startTime * sampleRate);
+  const startOffset = Math.max(0, Math.floor(startTime * sampleRate));
   const endOffset = Math.min(Math.floor(endTime * sampleRate), audioBuffer.length);
-  const frameCount = endOffset - startOffset;
+  const frameCount = Math.max(1, endOffset - startOffset);
 
   const trimmedBuffer = audioContext.createBuffer(
     audioBuffer.numberOfChannels,
@@ -40,18 +49,18 @@ function bufferToWave(abuffer: AudioBuffer, totalSteps: number): Blob {
   function setUint16(data: number) { out.setUint16(pos, data, true); pos += 2; }
   function setUint32(data: number) { out.setUint32(pos, data, true); pos += 4; }
 
-  setUint32(0x46464952);
+  setUint32(0x46464952); // "RIFF"
   setUint32(length - 8);
-  setUint32(0x45564157);
-  setUint32(0x20746d66);
+  setUint32(0x45564157); // "WAVE"
+  setUint32(0x20746d66); // "fmt "
   setUint32(16);
-  setUint16(1);
+  setUint16(1);          // PCM
   setUint16(numOfChan);
   setUint32(abuffer.sampleRate);
   setUint32(abuffer.sampleRate * 2 * numOfChan);
   setUint16(numOfChan * 2);
   setUint16(16);
-  setUint32(0x61746164);
+  setUint32(0x61746164); // "data"
   setUint32(length - pos - 4);
 
   const channels: Float32Array[] = [];
