@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import { DHAMMA_DATA, Master, Track } from '@/lib/mockData';
 import AudioTrimmer from '@/components/AudioTrimmer';
-import { Sparkles, BookOpen, Compass } from 'lucide-react';
+import AIHighlightPicker from '@/components/AIHighlightPicker';
+import { Sparkles, BookOpen, Compass, Wand2, Scissors } from 'lucide-react';
 
 export default function Home() {
   const [selectedMaster, setSelectedMaster] = useState<Master>(DHAMMA_DATA[0]);
   const [selectedTrack, setSelectedTrack] = useState<Track>(DHAMMA_DATA[0].tracks[0]);
+  const [mode, setMode] = useState<'ai' | 'manual'>('ai');
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
@@ -92,12 +94,40 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Step 3: Audio Trimmer & Export */}
+        {/* Step 3: AI Highlight Picker & Export */}
         <section>
-          <h2 className="text-base font-semibold mb-3 flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
-            <Sparkles className="w-4 h-4 text-amber-500" /> ၃။ အသံဖိုင် ဖြတ်တောက်ပြီး အသုံးပြုပါ
-          </h2>
-          <AudioTrimmer key={selectedTrack.id} track={selectedTrack} />
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <h2 className="text-base font-semibold flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+              <Sparkles className="w-4 h-4 text-amber-500" /> ၃။ Clip ထုတ်ယူပါ
+            </h2>
+            <div className="flex items-center bg-zinc-100 dark:bg-zinc-800 rounded-lg p-1 text-sm">
+              <button
+                onClick={() => setMode('ai')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition ${
+                  mode === 'ai'
+                    ? 'bg-white dark:bg-zinc-900 text-amber-600 shadow-sm'
+                    : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+                }`}
+              >
+                <Wand2 className="w-3.5 h-3.5" /> AI ဖြင့် အလိုအလျောက်
+              </button>
+              <button
+                onClick={() => setMode('manual')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition ${
+                  mode === 'manual'
+                    ? 'bg-white dark:bg-zinc-900 text-amber-600 shadow-sm'
+                    : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+                }`}
+              >
+                <Scissors className="w-3.5 h-3.5" /> ကိုယ်တိုင် ဖြတ်တောက်မည်
+              </button>
+            </div>
+          </div>
+          {mode === 'ai' ? (
+            <AIHighlightPicker key={selectedTrack.id} track={selectedTrack} />
+          ) : (
+            <AudioTrimmer key={selectedTrack.id} track={selectedTrack} />
+          )}
         </section>
       </div>
     </main>
